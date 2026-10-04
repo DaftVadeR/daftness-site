@@ -9,9 +9,10 @@ export const logoLinkStyle = twMerge(`
   bg-clip-text text-transparent
   animate-[text-flow_6s_ease-in_infinite]`);
 
-//ml-4 text-7xl font-semibold animate-logo-gradient bg-clip-text 
+//ml-4 text-7xl font-semibold animate-logo-gradient bg-clip-text
 
-export const navButtonStyle = twMerge("p-2 hover:bg-gray-700 rounded-lg transition-colors");
+export const navButtonStyle = twMerge(
+	"p-2 hover:bg-gray-700 rounded-lg transition-colors",
+);
 
 export const hiddenTitleStyle = twMerge("sr-only");
-

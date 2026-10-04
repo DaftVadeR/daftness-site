@@ -24,10 +24,19 @@ export const metadata: Metadata = {
 	description:
 		"The DafT Dev, also known as Ross D - NextJS, Typescript and Golang Web Developer.",
 	icons: [
-		{ rel: "icon", type: "image/png", sizes: "96x96", url: "/favicon-96x96.png" },
+		{
+			rel: "icon",
+			type: "image/png",
+			sizes: "96x96",
+			url: "/favicon-96x96.png",
+		},
 		{ rel: "icon", type: "image/svg+xml", url: "/favicon.svg" },
 		{ rel: "shortcut icon", url: "/favicon-new.ico" },
-		{ rel: "apple-touch-icon", sizes: "180x180", url: "/apple-touch-icon.png" },
+		{
+			rel: "apple-touch-icon",
+			sizes: "180x180",
+			url: "/apple-touch-icon.png",
+		},
 	],
 	manifest: "/site.webmanifest",
 	appleWebApp: {
@@ -41,7 +50,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={`${domine.variable} ${sourceCodePro.variable}`}>
+		<html
+			lang="en"
+			className={`${domine.variable} ${sourceCodePro.variable}`}
+		>
 			<body>
 				{children}
 				<Ascii />

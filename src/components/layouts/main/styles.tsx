@@ -52,4 +52,3 @@ export const col1Style = twMerge(`
 export const col2Style = twMerge(`
     bg-orange-300
 `);
-

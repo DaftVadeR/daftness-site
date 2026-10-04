@@ -1,37 +1,33 @@
-import Layout from '../../layouts/main';
+import Layout from "../../layouts/main";
+import Brands from "./brands";
 
-import {
-  containerStyle,
-} from './styles';
-
-import Intro from './intro';
-import Tidbits from './tidbits';
-import Proficiencies from './proficiencies';
-import Brands from './brands';
-import MatrixWithButton from './matrix-with-button';
+import Intro from "./intro";
+import MatrixWithButton from "./matrix-with-button";
+import Proficiencies from "./proficiencies";
+import { containerStyle } from "./styles";
+import Tidbits from "./tidbits";
 
 type Link = {
-  label: string,
-  href: string,
+	label: string;
+	href: string;
 };
 
 export const links: Link[] = [
-  { href: '#about-me', label: 'About' },
-  { href: '#languages-and-tools', label: 'Tools' },
-  { href: '#work-experience', label: 'Work' },
+	{ href: "#about-me", label: "About" },
+	{ href: "#languages-and-tools", label: "Tools" },
+	{ href: "#work-experience", label: "Work" },
 ];
 
 export default function Home() {
-  return (
-    <Layout>
-      <div className={containerStyle}>
-        <Intro />
-        <Tidbits />
-        <Proficiencies />
-        <Brands />
-        <MatrixWithButton />
-      </div>
-    </Layout>
-  );
-};
-
+	return (
+		<Layout>
+			<div className={containerStyle}>
+				<Intro />
+				<Tidbits />
+				<Proficiencies />
+				<Brands />
+				<MatrixWithButton />
+			</div>
+		</Layout>
+	);
+}

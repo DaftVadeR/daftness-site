@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from "tailwind-merge";
 
 // width will change via an inline style.
 export const listStyle = twMerge(`
@@ -11,8 +11,9 @@ export const listItemStyle = twMerge(`
    rounded-[inherit] min-h-full h-full flex-grow flex-shrink-0
 `);
 
-export const linkStyle = twMerge(`mx-3 sm:mx-4 text-xl md:text-2xl hover:text-purple-700 text-black transition-all duration-500 relative z-2`);
+export const linkStyle = twMerge(
+	`mx-3 sm:mx-4 text-xl md:text-2xl hover:text-purple-700 text-black transition-all duration-500 relative z-2`,
+);
 
 // rgba(120, 30, 200, 0.8) 0 %,
 // rgba(40, 10, 100, 0.8) 40 %,
-

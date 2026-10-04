@@ -116,6 +116,7 @@ export default function Circles() {
 
 				return (
 					<div
+						// biome-ignore lint/suspicious/noArrayIndexKey: static list generated once and never reordered
 						key={i}
 						className={circleRowStyle}
 						style={customStyles}

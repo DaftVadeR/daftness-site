@@ -116,6 +116,7 @@ export default function AnimateText({
 				.split("")
 				.map((character: string, index: number) => {
 					return (
+						// biome-ignore lint/suspicious/noArrayIndexKey: characters of a growing string prefix; position is the identity
 						<span className={characterStyle} key={index}>
 							{character}
 						</span>

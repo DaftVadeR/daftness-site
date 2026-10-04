@@ -48,7 +48,7 @@ export default function WordSection({
 		}
 
 		word.characters.forEach((char, characterIndex) => {
-			gsap.to(char.ref!.current, {
+			gsap.to(char.ref?.current ?? null, {
 				opacity: 1,
 				scale: 1,
 				visibility: "visible",
@@ -110,6 +110,7 @@ export default function WordSection({
 						}
 					}}
 					className={clsx(characterStyle, "invisible")}
+					// biome-ignore lint/suspicious/noArrayIndexKey: characters of a static word, never reordered; duplicate letters are possible
 					key={`char_${lineIndex}_${wordIndex}_${charIndex}`}
 				>
 					{char.letter}

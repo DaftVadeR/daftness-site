@@ -6,8 +6,8 @@ import type { Logo } from "./types";
 export default function LogoList({ logos }: { logos: Logo[] }) {
 	return (
 		<ul className={logoListStyle}>
-			{logos.map((logo, index) => (
-				<li key={index} className={clsx(logoListItemStyle)}>
+			{logos.map((logo) => (
+				<li key={logo.filename} className={clsx(logoListItemStyle)}>
 					<img
 						width={60}
 						height={60}

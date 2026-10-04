@@ -69,7 +69,7 @@ export default function MatrixBg() {
 
 	// dont want to do it more than once.
 	const [characters, setCharacters] = useState<Row[]>([]);
-	const [triggers, setTriggers] = useState<Trigger[]>([]);
+	const [_triggers, setTriggers] = useState<Trigger[]>([]);
 
 	const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -83,11 +83,14 @@ export default function MatrixBg() {
 			for (const entry of entries) {
 				const rect = entry.target.getBoundingClientRect();
 
-				setRows(round(rect.height / CHARACTER_HEIGHT));
-				setCols(round(rect.width / CHARACTER_WIDTH));
+				const newRows = round(rect.height / CHARACTER_HEIGHT);
+				const newCols = round(rect.width / CHARACTER_WIDTH);
+
+				setRows(newRows);
+				setCols(newCols);
 
 				console.log(
-					`Container resized: ${rect.width}x${rect.height}, ROWS: ${rows}, COLS: ${cols}`,
+					`Container resized: ${rect.width}x${rect.height}, ROWS: ${newRows}, COLS: ${newCols}`,
 				);
 			}
 		});
@@ -177,7 +180,7 @@ export default function MatrixBg() {
 		for (let t = 0; t < triggersToQueue.length; t++) {
 			const trigger = triggersToQueue[t];
 
-			if (!trigger.ref || !trigger.ref.current) {
+			if (!trigger.ref?.current) {
 				continue;
 			}
 
@@ -230,12 +233,7 @@ export default function MatrixBg() {
 	}, [containerRef, cols, rows, triggersToQueue]);
 
 	return (
-		<div
-			aria-hidden="true"
-			aria-label="Matrix background effect"
-			className={containerStyle}
-			ref={containerRef}
-		>
+		<div aria-hidden="true" className={containerStyle} ref={containerRef}>
 			{/* 
             has to be absolute positioned to prevent additional 
             resizing after characters are inserted into the container itself
@@ -245,11 +243,13 @@ export default function MatrixBg() {
 					return (
 						<div
 							className={clsx(rowStyle)}
+							// biome-ignore lint/suspicious/noArrayIndexKey: fixed grid position is the identity
 							key={`matrix_row_${rowIndex}`}
 						>
 							{row.characters.map((char, colIndex) => {
 								return (
 									<span
+										// biome-ignore lint/suspicious/noArrayIndexKey: fixed grid position is the identity
 										key={`matrix_char_${rowIndex}_${colIndex}`}
 										className={clsx(characterWrapperStyle)}
 										style={{
@@ -278,6 +278,8 @@ export default function MatrixBg() {
 				{Array.from({ length: cols }).map((_, colIndex) => {
 					return (
 						<div
+							// biome-ignore lint/suspicious/noArrayIndexKey: one trigger per fixed column
+							key={`matrix_trigger_${colIndex}`}
 							className={clsx(
 								triggerStyle,
 								triggersToQueue.indexOf(colIndex) !== -1
@@ -288,28 +290,31 @@ export default function MatrixBg() {
 								left: `${colIndex * CHARACTER_WIDTH}px`,
 							}}
 						>
-							{characterTrigger.split("").map((char) => (
-								<span
-									key={`matrix_trigger_${colIndex}`}
-									className={characterWrapperStyle}
-									style={{
-										width: `${CHARACTER_WIDTH}px`,
-										flexBasis: `${CHARACTER_WIDTH}px`,
-										height: `${CHARACTER_HEIGHT}px`,
-									}}
-								>
+							{characterTrigger
+								.split("")
+								.map((char, charIndex) => (
 									<span
-										className={clsx(characterStyle)}
-										style={
-											{
-												// animationDelay: `${colIndex * 0.1}s`,
-											}
-										}
+										// biome-ignore lint/suspicious/noArrayIndexKey: characters of a constant string; position is the identity
+										key={`matrix_trigger_${colIndex}_${charIndex}`}
+										className={characterWrapperStyle}
+										style={{
+											width: `${CHARACTER_WIDTH}px`,
+											flexBasis: `${CHARACTER_WIDTH}px`,
+											height: `${CHARACTER_HEIGHT}px`,
+										}}
 									>
-										{char}
+										<span
+											className={clsx(characterStyle)}
+											style={
+												{
+													// animationDelay: `${colIndex * 0.1}s`,
+												}
+											}
+										>
+											{char}
+										</span>
 									</span>
-								</span>
-							))}
+								))}
 						</div>
 					);
 				})}

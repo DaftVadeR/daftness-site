@@ -149,7 +149,8 @@ export default function AnimateTextStagger({
 						line={line}
 						lineIndex={lineIndex}
 						speed={speed}
-						key={lineIndex} // line index used in case of duplicate lines, a rare but possible use case.
+						// biome-ignore lint/suspicious/noArrayIndexKey: line index used in case of duplicate lines, a rare but possible use case.
+						key={lineIndex}
 						// If there is an ensuing step, pass a callback to advance to it via the state setter. */ }
 						onLineDone={
 							lines.length > followingStep

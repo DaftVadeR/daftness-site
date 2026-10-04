@@ -26,6 +26,7 @@ export default function MatrixWithButton() {
 			<div className={btnContainerStyle}>
 				{!isMatrixVisible && (
 					<button
+						type="button"
 						onClick={() => setIsMatrixVisible(!isMatrixVisible)}
 						className={showMatrixBtnStyle}
 					>

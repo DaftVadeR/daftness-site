@@ -301,7 +301,8 @@ export default function MatrixEffect({
 			ctx.fillStyle = "rgb(0 255 120)";
 
 			for (let j = 0; j < S.revealCap; j++) {
-				const ttl = (S.revealTtl[j] -= dt);
+				S.revealTtl[j] -= dt;
+				const ttl = S.revealTtl[j];
 				if (ttl <= 0) {
 					S.revealTtl[j] = 0;
 					continue;

@@ -21,13 +21,9 @@ import {
 import type { SPEED, TextLine } from "./types";
 import WordSection from "./word";
 
-const Icon = ({ icon, line }: { icon: React.ReactNode; line: TextLine }) => {
+const Icon = ({ icon }: { icon: React.ReactNode }) => {
 	return (
-		<span
-			className={clsx(iconStyle)}
-			aria-hidden="true"
-			aria-label={`Icon - ${line.value}`}
-		>
+		<span className={clsx(iconStyle)} aria-hidden="true">
 			{icon}
 		</span>
 	);
@@ -95,10 +91,11 @@ export default function Line({
 					hasIcon ? iconPaddingStyle : null,
 				)}
 			>
-				{hasIcon && <Icon icon={icon} line={line} />}
+				{hasIcon && <Icon icon={icon} />}
 				{line.words.map((word, wordIndex) => (
 					<WordSection
 						wordIndex={wordIndex}
+						// biome-ignore lint/suspicious/noArrayIndexKey: words of a static line, never reordered; duplicate words are possible
 						key={`${lineIndex}_${wordIndex}`}
 						word={word}
 						onWordDone={onWordDone}

@@ -31,8 +31,10 @@ describe("TextTypingAnimation", () => {
 		});
 	});
 
-	afterEach(cleanup);
-	afterEach(vi.clearAllTimers);
+	afterEach(() => {
+		cleanup();
+		vi.clearAllTimers();
+	});
 
 	it("renders first character of 'test' on first load", () => {
 		const copy = "test";

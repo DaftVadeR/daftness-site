@@ -1,7 +1,13 @@
 "use client";
 
 import clsx from "clsx";
-import { type MouseEvent, useCallback, useEffect, useState } from "react";
+import {
+	type FocusEvent,
+	type MouseEvent,
+	useCallback,
+	useEffect,
+	useState,
+} from "react";
 import { isServer } from "@/util/client";
 import { linkStyle, listItemStyle, listStyle } from "./styles";
 
@@ -17,7 +23,7 @@ export default function LinkSelector({ links }: { links: Link[] }) {
 	const [isMounted, setIsMounted] = useState(false);
 
 	const handleMouseOver = useCallback(
-		(event: MouseEvent<HTMLLIElement>) => {
+		(event: MouseEvent<HTMLLIElement> | FocusEvent<HTMLLIElement>) => {
 			if (!isMounted) return;
 
 			const rect = event.currentTarget.getBoundingClientRect();
@@ -48,11 +54,12 @@ export default function LinkSelector({ links }: { links: Link[] }) {
 					} as React.CSSProperties
 				}
 			>
-				{links.map((link, index) => (
+				{links.map((link) => (
 					<li
 						className={clsx(listItemStyle)}
-						key={index}
+						key={link.href}
 						onMouseOver={handleMouseOver}
+						onFocus={handleMouseOver}
 					>
 						<a
 							href={link.href}

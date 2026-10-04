@@ -126,6 +126,7 @@ function useTerminalTyping(text: string) {
 	}, [mounted, reduceMotion]);
 
 	// Typing progression (gated by inView)
+	// biome-ignore lint/correctness/useExhaustiveDependencies: text is a trigger to restart typing when it changes
 	useEffect(() => {
 		if (!mounted) return;
 		if (!inView) return;
@@ -158,6 +159,7 @@ function useTerminalTyping(text: string) {
 	}, [mounted, inView, reduceMotion, chars.length, text]);
 
 	// Animate newest character (keyframes, no stranded scale)
+	// biome-ignore lint/correctness/useExhaustiveDependencies: typedCount is a trigger to animate each newly typed character
 	useEffect(() => {
 		if (!mounted || reduceMotion || !inView) return;
 
@@ -199,6 +201,7 @@ function useTerminalTyping(text: string) {
 	}, [mounted, reduceMotion, inView]);
 
 	// When text changes while mounted & in view, restart cleanly
+	// biome-ignore lint/correctness/useExhaustiveDependencies: text is a trigger to restart typing when it changes
 	useEffect(() => {
 		if (!mounted) return;
 		if (!inView) return;
@@ -237,6 +240,7 @@ const ClientAnimation = ({
 				const isLast = i === typedChars.length - 1;
 				return (
 					<span
+						// biome-ignore lint/suspicious/noArrayIndexKey: characters of a growing string prefix; position is the identity
 						key={`${i}-${ch}`}
 						ref={isLast ? lastCharRef : null}
 						className="inline-block will-change-transform"

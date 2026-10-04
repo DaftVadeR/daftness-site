@@ -23,8 +23,9 @@ export default function MainLayout({
 
 	const isResizing = useResizePause(layoutRef);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: isResizing is a trigger to re-measure the window once resizing pauses
 	useEffect(() => {
-		const isClient = typeof window !== undefined;
+		const isClient = typeof window !== "undefined";
 
 		if (isClient) {
 			setSize([window.innerWidth, window.innerHeight]);

@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from "tailwind-merge";
 
 export const containerStyle = twMerge(`
   px-20 pb-20 text-white text-center   
@@ -16,4 +16,3 @@ export const listItemStyle = twMerge(`
 export const paragraphStyle = twMerge(`
   text-sm
 `);
-

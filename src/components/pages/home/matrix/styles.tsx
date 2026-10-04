@@ -1,4 +1,4 @@
-import { twMerge, } from 'tailwind-merge';
+import { twMerge } from "tailwind-merge";
 
 export const containerStyle = twMerge(`
    py-30 relative z-1
@@ -16,7 +16,6 @@ export const characterWrapperStyle = twMerge(`
 export const characterStyle = twMerge(`
    text-green-400 block text-md font-sans
 `);
-
 
 export const triggersContainerStyle = twMerge(`
    absolute top-0 left-0 w-full h-full flex flex-wrap

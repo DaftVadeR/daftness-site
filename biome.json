@@ -11,7 +11,8 @@
 			"**/src/**/*",
 			"**/app/**/*",
 			"**/.vscode/**/*",
-			"!**/app/globals.css"
+			"!**/app/globals.css",
+			"!**/.next"
 		]
 	},
 	"formatter": {

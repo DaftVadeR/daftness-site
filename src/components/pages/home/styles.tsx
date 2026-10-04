@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from "tailwind-merge";
 
 export const titleStyle = twMerge(`
    mb-12 text-3xl sm:text-4xl md:text-6xl lg:text-6xl
@@ -27,4 +27,3 @@ export const containerStyle = twMerge(`
 export const splitterStyle = twMerge(`
    lg:flex lg:flex-row lg:space-x-16 text-left 
 `);
-

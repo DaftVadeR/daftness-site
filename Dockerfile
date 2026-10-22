@@ -1,10 +1,11 @@
-FROM oven/bun:1 AS base
+FROM node:24.22.1-alpine AS base
 WORKDIR /app
 
 # Install dependencies
 FROM base AS deps
-COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile
+RUN apk add --no-cache libc6-compat
+COPY package.json ./
+RUN npm install --no-audit --no-fund
 
 # Build the application
 FROM base AS builder
@@ -12,7 +13,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN bun run build
+RUN npm run build
 
 # Production image
 FROM base AS runner
@@ -24,13 +25,13 @@ ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
 
 # Don't run as root
-USER bun
+USER node
 
 # Copy standalone output
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/public ./public
+COPY --from=builder --chown=node:node /app/.next/standalone ./
+COPY --from=builder --chown=node:node /app/.next/static ./.next/static
+COPY --from=builder --chown=node:node /app/public ./public
 
 EXPOSE 3000
 
-CMD ["bun", "server.js"]
+CMD ["node", "server.js"]
